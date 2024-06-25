@@ -1,6 +1,6 @@
 package com.spring.board.controller;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spring.board.domain.boardDTO;
 import com.spring.board.service.BoardService;
+
 
 @Controller
 public class BoardController {

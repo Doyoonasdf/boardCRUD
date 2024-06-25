@@ -3,9 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.spring.board.dao.boardDAO">
-     <select id="selectAll" resultType="boardDTO">
-        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
-        FROM board
-        ORDER BY reg_date DESC, bno DESC
+     <select id="selectAll" resultType="com.spring.board.domain.boardDTO">
+        SELECT * FROM board
     </select>
 </mapper>
