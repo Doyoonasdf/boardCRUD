@@ -23,32 +23,34 @@
     </style>
 </head>
 <body>
-    <h1>Board List</h1>
+    <h1>게시판 목록</h1>
     <table>
         <thead>
             <tr>
-                <th>BNO</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Writer</th>
-                <th>View Count</th>
-                <th>Comment Count</th>
-                <th>Reg Date</th>
+                <th>번호</th>
+                <th>글 제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="board" items="${boardList}">
+            <c:forEach var="board_info" items="${boardList}">
                 <tr>
-                    <td>${board.bno}</td>
-                    <td>${board.title}</td>
-                    <td>${board.content}</td>
-                    <td>${board.writer}</td>
-                    <td>${board.view_cnt}</td>
-                    <td>${board.comment_cnt}</td>
-                    <td>${board.reg_date}</td>
+                    <td>${board_info.bno}</td>
+                    <td>
+                    <a href="/board/board/read?IDX=${board_info.bno}">
+                    ${board_info.title}
+                    </a>
+                    </td>
+                    <td>${board_info.writer}</td>
+                    <td>${board_info.view_cnt}</td>
+                    <td>${board_info.reg_date}</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    
+    <button onclick = "location.href ='/board/board/write'">글쓰기</button>
 </body>
 </html>
