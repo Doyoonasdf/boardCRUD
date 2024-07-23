@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,8 @@ public class BoardController {
 	
 //	private Logger logger = Logger.getLogger(BoardController.class);
 	
-	private Logger logger = LogManager.getLogger("egovLogger");  
+//	private Logger logger = LogManager.getLogger("egovLogger");  
+	private Logger logger = LogManager.getLogger(BoardController.class);  
 	
 	@Autowired
 	private BoardService boardService;
@@ -35,11 +36,12 @@ public class BoardController {
 	public String getBoardList(Model model) throws Exception {
 		try {
 			List<boardDTO> boardList = boardService.getList();
+			System.out.println("BoardController getBoardList");
 			logger.info("info-boardList : ");
 			logger.debug("debug-boardList : ");
 			logger.warn("warn-boardList : ");
 			logger.error("error-boardList : ");
-			logger.info(boardList);
+			logger.info("boardList : " + boardList);
 			model.addAttribute("boardList", boardList);
 		}catch(Exception e ) {
 			e.printStackTrace();
