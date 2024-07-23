@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +23,23 @@ import com.spring.board.service.BoardService;
 @Controller
 public class BoardController {
 	
+//	private Logger logger = Logger.getLogger(BoardController.class);
+	
+	private Logger logger = LogManager.getLogger("egovLogger");  
+	
 	@Autowired
 	private BoardService boardService;
 	
 //	게시판 목록
 	@GetMapping("/board/list")
-	public String getBoardList(Model model) {
+	public String getBoardList(Model model) throws Exception {
 		try {
 			List<boardDTO> boardList = boardService.getList();
+			logger.info("info-boardList : ");
+			logger.debug("debug-boardList : ");
+			logger.warn("warn-boardList : ");
+			logger.error("error-boardList : ");
+			logger.info(boardList);
 			model.addAttribute("boardList", boardList);
 		}catch(Exception e ) {
 			e.printStackTrace();
