@@ -10,5 +10,4 @@ public interface BoardService {
 	int updateBoard (boardDTO dto) throws Exception;
 	int deleteBoard (boardDTO dto) throws Exception;
 	
-	//test//test
 }
