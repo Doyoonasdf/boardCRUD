@@ -17,5 +17,19 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectAll();
 	}
 	
+	public int insertService(boardDTO dto) throws Exception{
+		return boardDao.insert(dto);
+	}
 	
+	public boardDTO detailView (int bno) throws Exception {
+		return boardDao.detailView(bno);
+	}
+	
+	public int updateBoard (boardDTO dto) throws Exception{
+		return boardDao.updateBoard(dto);
+	}
+	
+	public int deleteBoard (boardDTO dto) throws Exception{
+		return boardDao.deleteBoard(dto);
+	}
 }

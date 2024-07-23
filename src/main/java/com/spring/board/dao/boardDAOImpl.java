@@ -20,5 +20,20 @@ public class boardDAOImpl implements boardDAO {
     public List<boardDTO> selectAll() throws Exception {
         return session.selectList(namespace+"selectAll");
     }
+    
+    public int insert(boardDTO dto) throws Exception {
+    	return session.insert(namespace+"insert",dto);
+    }
+    
+    public boardDTO detailView(int bno) throws Exception {
+    	return session.selectOne(namespace+"detailView",bno);
+    }
+    
+    public int updateBoard(boardDTO board) throws Exception{
+    	return session.update(namespace+"updateBoard",board);
+    }
 	
+    public int deleteBoard(boardDTO dto) throws Exception{
+    	return session.delete(namespace+"deleteBoard",dto);
+    }
 }

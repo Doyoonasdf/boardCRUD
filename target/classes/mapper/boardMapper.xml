@@ -4,6 +4,31 @@
         
 <mapper namespace="com.spring.board.dao.boardDAO">
      <select id="selectAll" resultType="com.spring.board.domain.boardDTO">
-        SELECT * FROM board
+        SELECT * FROM board_info
     </select>
+    
+    <insert id="insert" parameterType="com.spring.board.domain.boardDTO">
+    	INSERT into board_info 
+    	(writer, title, content ,reg_date)
+    	values
+    	(#{writer},#{title},#{content}, now())
+    </insert>
+    
+    <select id="detailView" parameterType="int" resultType="com.spring.board.domain.boardDTO">
+    	SELECT bno, writer, title, content
+    	FROM board_info
+    	WHERE bno=#{bno}
+    </select>
+    
+    <update id="updateBoard" parameterType="com.spring.board.domain.boardDTO">
+    	UPDATE board_info
+    	SET writer=#{writer}, title=#{title} , content=#{content}, up_date = now()
+    	WHERE bno=#{bno}
+    </update>
+    
+    <delete id="deleteBoard" parameterType="com.spring.board.domain.boardDTO">
+    	DELETE 
+    	FROM board_info
+    	WHERE  bno=#{bno} and writer=#{writer};
+    </delete>
 </mapper>

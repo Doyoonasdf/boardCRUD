@@ -9,9 +9,9 @@
 	
    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-      <property name="url" value="jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"/>
+      <property name="url" value="jdbc:mysql://localhost:3307/springbasic?useUnicode=true&amp;characterEncoding=utf8"/>
       <property name="username" value="Doyoon"/>
-      <property name="password" value="0428"/>
+      <property name="password" value="Lead1312!"/>
     </bean>
     
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
