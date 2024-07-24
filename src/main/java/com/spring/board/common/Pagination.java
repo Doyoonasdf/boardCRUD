@@ -73,7 +73,7 @@ public class Pagination {
 		this.next = next;
 	}
 	
-	public void pageInfo(int page, int range, int listCnt) {
+	public void pageInfo(int page, int range, int listCnt) { //현재 페이지/ 현재페이지범위/ 게시물총개수
 		this.page =page;
 		this.range=range;
 		this.listCnt=listCnt;

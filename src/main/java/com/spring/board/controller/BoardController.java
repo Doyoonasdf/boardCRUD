@@ -1,6 +1,7 @@
 package com.spring.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.board.common.Pagination;
 import com.spring.board.domain.boardDTO;
 import com.spring.board.service.BoardService;
 
@@ -33,15 +35,33 @@ public class BoardController {
 	
 //	게시판 목록
 	@GetMapping("/board/list")
-	public String getBoardList(Model model) throws Exception {
+	public String getBoardList(
+			//@RequestParam(required =false) int page,
+			//@RequestParam(required=false)int range,
+			@RequestParam Map<String, Object> pageInfo,
+			Model model) throws Exception {
 		try {
-			List<boardDTO> boardList = boardService.getList();
+			Pagination pagination = new Pagination();
+			List<boardDTO> boardList = boardService.getList(pagination);
 			System.out.println("BoardController getBoardList");
 			logger.info("info-boardList : ");
 			logger.debug("debug-boardList : ");
 			logger.warn("warn-boardList : ");
 			logger.error("error-boardList : ");
 			logger.info("boardList : " + boardList);
+			
+			//전체 게시글 개수
+			
+		    // 페이지 번호와 범위 가져오기
+	        int page = pageInfo.get("page") != null ? Integer.parseInt((String) pageInfo.get("page")) : 1;
+	        int range = pageInfo.get("range") != null ? Integer.parseInt((String) pageInfo.get("range")) : 10;
+
+			int listCnt = boardService.getBoardListCnt();
+			//Pagination 객체생성 및 페이징 정보 셋팅
+
+			pagination.pageInfo(page,range,listCnt);
+			
+			model.addAttribute("pagination", pagination);
 			model.addAttribute("boardList", boardList);
 		}catch(Exception e ) {
 			e.printStackTrace();
