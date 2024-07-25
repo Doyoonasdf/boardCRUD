@@ -47,7 +47,7 @@ public class BoardController {
 			
 		    // 페이지 번호와 범위 가져오기
 	        int page = pageInfo.get("page") != null ? Integer.parseInt((String) pageInfo.get("page")) : 1;
-	        int range = pageInfo.get("range") != null ? Integer.parseInt((String) pageInfo.get("range")) : 10;
+	        int range = pageInfo.get("range") != null ? Integer.parseInt((String) pageInfo.get("range")) : 1;
 
 			int listCnt = boardService.getBoardListCnt();
 			//Pagination 객체생성 및 페이징 정보 셋팅

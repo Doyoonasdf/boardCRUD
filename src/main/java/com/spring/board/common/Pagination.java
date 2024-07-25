@@ -78,27 +78,34 @@ public class Pagination {
 		this.range=range;
 		this.listCnt=listCnt;
 		
-		//전체 페이지 수
+		//전체 페이지 수//listCnt  게시물 총 개수  listSize = 10; //한 페이지당 목록 개수 
 		this.pageCnt= (int)Math.ceil(listCnt/(double)listSize); //소수값 존재 시 값 올림
 		
-		//시작페이지
-		this.startPage = (range - 1) * rangeSize +1 ;
+		//시작페이지 // range 현재 표시되는 페이지 범위 //rangeSize = 10; 한 페이지 범위에 보여질 페이지의 개수 
+		// 범위1 1-10  , 범위 2 11-20
+		this.startPage = (range - 1) * rangeSize +1 ; 
 		
 		//끝 페이지 : 다음에 나올 다음버튼 활성화 여부 판단위해
 		this.endPage = range * rangeSize;
 		
-		//게시판 시작번호 : MYSQL을 이용해 원하는 목록을 가져오기위해서 
+		//게시판 시작번호 : MYSQL을 이용해 원하는 목록을 가져오기위해서 0,10,20
 		this.startList = (page - 1) * listSize;
 		
 		//이전 버튼 상태 : 첫번째 페이지 범위에서는 이전버튼 필요없어서 FALSE
-		this.prev = range == 1 ? false : true;
-		
+		//this.prev = range == 1 ? false : true;
+		 this.prev = range != 1;
+		 
+		 
 		//다음 버튼 상태 : 현재 페이지의 마지막 번호가 전체 페이지 개수보다 크면 다음버튼 활성화
+		//endPage 현재 범위의 마지막 페이지 번호 30
+		// pageCnt 총 페이지 수 25
 		this.next = endPage > pageCnt ? false : true;
 		if(this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;
 			this.next =false;
 		}
+		
+	
 				
 	}
 	

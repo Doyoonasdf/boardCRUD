@@ -5,7 +5,9 @@
 <head>
     <title>Board List</title>
     <style>
-        li { list-style: none; }
+        li { 
+            list-style: none; 
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -21,6 +23,35 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        #paginationBox {
+            text-align: center;
+        }
+        .pagination {
+            display: inline-block;
+            padding: 0;
+            margin: 20px 0;
+            list-style: none;
+            border-radius: 4px;
+        }
+        .pagination li {
+            display: inline;
+        }
+        .pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+        .pagination li a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+        .pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }
     </style>
     <script>
         function fn_prev(page, range, rangeSize) {
@@ -28,6 +59,8 @@
             var range = range - 1;
             var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
             location.href = url;
+            debugger;
+            
         }
 
         function fn_pagination(page, range, rangeSize) {
@@ -40,6 +73,7 @@
             var range = parseInt(range) + 1;
             var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
             location.href = url;
+            debugger;
         }
     </script>
 </head>
