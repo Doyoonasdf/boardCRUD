@@ -41,14 +41,7 @@ public class BoardController {
 			@RequestParam Map<String, Object> pageInfo,
 			Model model) throws Exception {
 		try {
-			Pagination pagination = new Pagination();
-			List<boardDTO> boardList = boardService.getList(pagination);
 			System.out.println("BoardController getBoardList");
-			logger.info("info-boardList : ");
-			logger.debug("debug-boardList : ");
-			logger.warn("warn-boardList : ");
-			logger.error("error-boardList : ");
-			logger.info("boardList : " + boardList);
 			
 			//전체 게시글 개수
 			
@@ -58,9 +51,11 @@ public class BoardController {
 
 			int listCnt = boardService.getBoardListCnt();
 			//Pagination 객체생성 및 페이징 정보 셋팅
-
+			Pagination pagination = new Pagination();
 			pagination.pageInfo(page,range,listCnt);
-			
+			// 게시판 목록 가져오기
+			List<boardDTO> boardList = boardService.getList(pagination);
+
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("boardList", boardList);
 		}catch(Exception e ) {
@@ -88,6 +83,7 @@ public class BoardController {
 			dto.setTitle(request.getParameter("title"));
 			
 			boardService.insertService(dto);
+
 		}catch(Exception e ) {
 			e.printStackTrace();
 			model.addAttribute("message","Error occurred while retrieving board insert.");

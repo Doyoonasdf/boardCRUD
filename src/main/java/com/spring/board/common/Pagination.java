@@ -79,7 +79,7 @@ public class Pagination {
 		this.listCnt=listCnt;
 		
 		//전체 페이지 수
-		this.pageCnt= (int)Math.ceil(listCnt/listSize); //소수값 존재 시 값 올림
+		this.pageCnt= (int)Math.ceil(listCnt/(double)listSize); //소수값 존재 시 값 올림
 		
 		//시작페이지
 		this.startPage = (range - 1) * rangeSize +1 ;
