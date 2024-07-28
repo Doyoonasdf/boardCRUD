@@ -54,23 +54,37 @@
         }
     </style>
     <script>
-        function fn_prev(page, range, rangeSize) {
-            var page = ((range - 2) * rangeSize) + 1;
-            var range = range - 1;
-            var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
-            location.href = url;            
-        }
+	    function fn_prev(page, range, rangeSize) {
+	        var prevPage = page - 1; // 이전 페이지는 현재 페이지 - 1
+	        var prevRange = range;
+	        if (prevPage <= (range - 1) * rangeSize) {
+	            prevRange -= 1; // 페이지 범위를 감소시킴
+	        }
+	        
+	        // 이전 페이지가 1 이상일 때만 이동
+	        if (prevPage >= 1) {
+	            var url = "${pageContext.request.contextPath}/board/list?page=" + prevPage + "&range=" + prevRange;
+	            location.href = url;
+	        }
+	    }
 
         function fn_pagination(page, range, rangeSize) {
             var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
             location.href = url;
         }
 
-        function fn_next(page, range, rangeSize) {
-            var page = (range * rangeSize) + 1;
-            var range = parseInt(range) + 1;
-            var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
-            location.href = url;
+        function fn_next(page, range, rangeSize, pageCnt) {
+            var nextPage = page + 1; // 다음 페이지는 현재 페이지 + 1
+            var nextRange = range;
+            if (nextPage > range * rangeSize) {
+                nextRange += 1; // 페이지 범위를 증가시킴
+            }
+            
+            // 다음 페이지가 전체 페이지 수를 초과하지 않도록 함
+            if (nextPage <= pageCnt) {
+                var url = "${pageContext.request.contextPath}/board/list?page=" + nextPage + "&range=" + nextRange;
+                location.href = url;
+            }
         }
     </script>
 </head>
