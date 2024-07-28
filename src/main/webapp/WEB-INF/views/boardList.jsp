@@ -58,9 +58,7 @@
             var page = ((range - 2) * rangeSize) + 1;
             var range = range - 1;
             var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
-            location.href = url;
-            debugger;
-            
+            location.href = url;            
         }
 
         function fn_pagination(page, range, rangeSize) {
@@ -73,7 +71,6 @@
             var range = parseInt(range) + 1;
             var url = "${pageContext.request.contextPath}/board/list?page=" + page + "&range=" + range;
             location.href = url;
-            debugger;
         }
     </script>
 </head>
@@ -110,6 +107,13 @@
 
     <!-- pagination -->
     <div id="paginationBox">
+        
+        	<c:out value="${pagination.prev}" />
+			<c:out value="${pagination.next}" />
+			<c:out value="${pagination.startPage}"/>
+			<c:out value="${pagination.endPage}"/>
+			<c:out value="${pagination.pageCnt}"/>
+    
         <ul class="pagination">
             <c:if test="${pagination.prev}">
                 <li class="page-item">
@@ -129,6 +133,7 @@
                 </li>
             </c:if>
         </ul>
+
     </div>
 </body>
 </html>

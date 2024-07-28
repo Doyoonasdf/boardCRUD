@@ -84,7 +84,8 @@
         <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
-          <version>3.2.4.RELEASE</version>
+		  <!--<version>3.2.4.RELEASE</version> -->
+		  <version>${org.springframework-version}</version>
         </dependency>
         
         <!-- Commons dbcp version 1.4-->

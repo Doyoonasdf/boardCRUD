@@ -88,25 +88,43 @@ public class Pagination {
 		//끝 페이지 : 다음에 나올 다음버튼 활성화 여부 판단위해
 		this.endPage = range * rangeSize;
 		
+	    // 페이지가 총 페이지 수를 넘지 않도록 조정
+	    if (this.endPage > this.pageCnt) {
+	        this.endPage = this.pageCnt;
+	    }
+//		
 		//게시판 시작번호 : MYSQL을 이용해 원하는 목록을 가져오기위해서 0,10,20
 		this.startList = (page - 1) * listSize;
 		
 		//이전 버튼 상태 : 첫번째 페이지 범위에서는 이전버튼 필요없어서 FALSE
 		//this.prev = range == 1 ? false : true;
-		 this.prev = range != 1;
+		 this.prev = range > 1;
 		 
 		 
 		//다음 버튼 상태 : 현재 페이지의 마지막 번호가 전체 페이지 개수보다 크면 다음버튼 활성화
 		//endPage 현재 범위의 마지막 페이지 번호 30
 		// pageCnt 총 페이지 수 25
-		this.next = endPage > pageCnt ? false : true;
+		this.next = this.endPage < this.pageCnt ? false : true;
+		
 		if(this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;
 			this.next =false;
 		}
 		
+	    // Logging for debugging
+	    System.out.println("Page: " + page + ", Range: " + range + ", List Count: " + listCnt);
+	    System.out.println("Start Page: " + startPage + ", End Page: " + endPage);
+	    System.out.println("Total Pages (pageCnt): " + pageCnt);
+	    System.out.println("Prev: " + prev + ", Next: " + next);
+		
 	
 				
+	}
+	public int getPageCnt() {
+		return pageCnt;
+	}
+	public void setPageCnt(int pageCnt) {
+		this.pageCnt = pageCnt;
 	}
 	
 }
