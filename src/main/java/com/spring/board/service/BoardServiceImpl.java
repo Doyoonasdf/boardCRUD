@@ -15,8 +15,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	boardDAO boardDao;
 	
-	public List<boardDTO> getList(Pagination pagination) throws Exception {
-		return boardDao.selectAll(pagination);
+	public List<boardDTO> getList(Pagination pagination, String searchType, String keyword) throws Exception {
+		return boardDao.selectAll(pagination, searchType, keyword);
 	}
 	
 	public int insertService(boardDTO dto) throws Exception{
@@ -36,8 +36,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getBoardListCnt() throws Exception {
-		return boardDao.getBoardListCnt();
+	public int getBoardListCnt(String searchType, String keyword) throws Exception {
+		return boardDao.getBoardListCnt(searchType, keyword);
 	}
 	
 	

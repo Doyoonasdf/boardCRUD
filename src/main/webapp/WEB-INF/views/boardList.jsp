@@ -54,6 +54,7 @@
         }
     </style>
     <script>
+    
 	    function fn_prev(page, range, rangeSize) {
 	        var prevPage = page - 1; // 이전 페이지는 현재 페이지 - 1
 	        var prevRange = range;
@@ -86,10 +87,35 @@
                 location.href = url;
             }
         }
+        
+        function fn_btnSearch(e){
+        	e.preventDefault();
+        	var url = "${pageContext.request.contextPath}/board/list";
+        	url += "searchType=" + $('#searchType').val();
+        	url+= "keyword="+$('#keyword').val();
+        	location.href = url;
+        	console.log(url);
+        }
+        
     </script>
 </head>
 <body>
     <h1>게시판 목록</h1>
+    
+    <form action="/board/board/list" class="search-form" method="get" id="searchFoam" name="search-form">
+    	<select class="type-box" name="searchType" id="searchType"  >
+       		 <option value="title" ${searchType == 'title' ? 'selected' : ''}>제목만</option>
+       		 <option value="writer" ${searchType == 'writer' ? 'selected' : ''}>작성자</option>
+    	</select>
+		<td colspan="2">
+          <input class="inputId" id="keyword"  type="text" name="keyword" placeholder="검색어 입력">
+        </td>
+		<td>
+          <input class="submitBtn" type="submit" name="btnSearch" value="검색하기" onClick="fn_btnSearch(e)" >
+		</td>
+    </form>
+    
+    
     <table>
         <thead>
             <tr>

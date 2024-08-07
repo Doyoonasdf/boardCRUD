@@ -36,28 +36,30 @@ public class BoardController {
 //	게시판 목록
 	@GetMapping("/board/list")
 	public String getBoardList(
-			//@RequestParam(required =false) int page,
-			//@RequestParam(required=false)int range,
+		    @RequestParam(required = false) String searchType,
+		    @RequestParam(required = false) String keyword,
 			@RequestParam Map<String, Object> pageInfo,
 			Model model) throws Exception {
-		try {
-			System.out.println("BoardController getBoardList");
-			
+		try {	
 			//전체 게시글 개수
 			
 		    // 페이지 번호와 범위 가져오기
 	        int page = pageInfo.get("page") != null ? Integer.parseInt((String) pageInfo.get("page")) : 1;
 	        int range = pageInfo.get("range") != null ? Integer.parseInt((String) pageInfo.get("range")) : 1;
 
-			int listCnt = boardService.getBoardListCnt();
+	        int listCnt = boardService.getBoardListCnt(searchType, keyword);
 			//Pagination 객체생성 및 페이징 정보 셋팅
 			Pagination pagination = new Pagination();
 			pagination.pageInfo(page,range,listCnt);
+			
 			// 게시판 목록 가져오기
-			List<boardDTO> boardList = boardService.getList(pagination);
+	        List<boardDTO> boardList = boardService.getList(pagination, searchType, keyword);
 
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("boardList", boardList);
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("keyword", keyword);
+			
 		}catch(Exception e ) {
 			e.printStackTrace();
 			model.addAttribute("message","Error occurred while retrieving board list.");

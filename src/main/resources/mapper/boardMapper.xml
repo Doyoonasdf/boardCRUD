@@ -3,16 +3,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.spring.board.dao.boardDAO">
-     <select id="selectAll" parameterType="com.spring.board.common.Pagination" resultType="com.spring.board.domain.boardDTO">
-        SELECT * 
-        FROM board_info
-        LIMIT #{startList}, #{listSize}
-    </select>
+	<select id="selectAll" parameterType="map" resultType="com.spring.board.domain.boardDTO">
+	    SELECT * 
+	    FROM board_info
+	    WHERE 1 = 1
+	        <if test="searchType != null and keyword != null">
+	            and ${searchType} LIKE CONCAT('%', #{keyword}, '%')
+	        </if>
+	    LIMIT #{startList}, #{listSize}
+	</select>
     
     <select id="getBoardListCnt" resultType="int">
     	SELECT count(*) as listCnt
     	FROM board_info
+	    WHERE 1 = 1
+	        <if test="searchType != null and keyword != null">
+	           AND ${searchType} LIKE CONCAT('%', #{keyword}, '%') 
+	        </if>
     </select>
+    
     
     
     <insert id="insert" parameterType="com.spring.board.domain.boardDTO">

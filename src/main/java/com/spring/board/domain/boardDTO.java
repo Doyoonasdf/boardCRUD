@@ -11,7 +11,23 @@ public class boardDTO {
     private Date reg_date;
     private String content;
     
+    //검색관련 변수 추가
+    private String keyword;
+    private String type;
     
+    public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	
 	public String getContent() {
 		return content;

@@ -18,8 +18,12 @@ public class boardDAOImpl implements boardDAO {
 	private static String namespace = "com.spring.board.dao.boardDAO.";
 	
     @Override
-    public List<boardDTO> selectAll(Pagination pagination) throws Exception {
-        return session.selectList(namespace+"selectAll",pagination);
+    public List<boardDTO> selectAll(Pagination pagination, String searchType, String keyword) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("pagination", pagination);
+        params.put("searchType", searchType);
+        params.put("keyword", keyword);
+    	return session.selectList(namespace+"selectAll",params);
     }
     
     public int insert(boardDTO dto) throws Exception {
@@ -40,8 +44,11 @@ public class boardDAOImpl implements boardDAO {
 
     //총 게시글개수 확인
 	@Override
-	public int getBoardListCnt() throws Exception {
-		return session.selectOne(namespace+"getBoardListCnt");
+	public int getBoardListCnt(String searchType, String keyword) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("keyword", keyword);
+		return session.selectOne(namespace+"getBoardListCnt",params);
 	}
     
     

@@ -80,12 +80,12 @@
 	      </dependency>
         
        
-        <!-- Spring version 3.2.4RELEASE-->
+        <!-- Spring version 3.2.4RELEASE는 집 -->
         <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
 		  <!--<version>3.2.4.RELEASE</version> -->
-		  <version>${org.springframework-version}</version>
+		   <version>${org.springframework-version}</version>
         </dependency>
         
         <!-- Commons dbcp version 1.4-->
