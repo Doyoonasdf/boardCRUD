@@ -20,7 +20,9 @@ public class boardDAOImpl implements boardDAO {
     @Override
     public List<boardDTO> selectAll(Pagination pagination, String searchType, String keyword) throws Exception {
         Map<String, Object> params = new HashMap<>();
-        params.put("pagination", pagination);
+        //params.put("pagination", pagination);
+        params.put("startList", pagination.getStartList());
+        params.put("listSize", pagination.getListSize());
         params.put("searchType", searchType);
         params.put("keyword", keyword);
     	return session.selectList(namespace+"selectAll",params);
