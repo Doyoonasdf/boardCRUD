@@ -131,7 +131,7 @@
                 <tr>
                     <td>${board_info.bno}</td>
                     <td>
-                        <a href="/board/board/read?IDX=${board_info.bno}">
+                        <a href="/board/board/read?IDX=${board_info.bno}&page=${pagination.page}">
                             ${board_info.title}
                         </a>
                     </td>

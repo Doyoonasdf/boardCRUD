@@ -35,7 +35,7 @@
 					</tr>
 				</table>
 			</form>
-			<button onclick="location.href ='/board/board/list'"> 목록</button>
+			<button onclick="location.href ='/board/board/list?page=${page}'"> 목록</button>
 			<button onclick="location.href ='/board/board/updateForm?IDX=${boardList.bno}'"> 수정</button>
 			<button> 삭제</button>
 		</div>

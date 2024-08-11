@@ -95,10 +95,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/read", method = RequestMethod.GET)
-	public String getBoardRead (@RequestParam("IDX") int bno, Model model) {
+	public String getBoardRead (@RequestParam("IDX") int bno, 
+			 @RequestParam(required = false) int page,
+			Model model) {
 		try {
 			boardDTO boardList = boardService.detailView(bno);
 			model.addAttribute("boardList",boardList);
+			model.addAttribute("page",page);
 		}catch(Exception e ) {
 			e.printStackTrace();
 		}
