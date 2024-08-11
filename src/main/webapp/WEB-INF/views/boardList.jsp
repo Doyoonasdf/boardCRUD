@@ -23,6 +23,11 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        
+        .empty-message {
+		    text-align: center;
+		    height: 50px; 
+		}
         #paginationBox {
             text-align: center;
         }
@@ -128,19 +133,28 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="board_info" items="${boardList}">
-                <tr>
-                    <td>${board_info.bno}</td>
-                    <td>
-                        <a href="/board/board/read?IDX=${board_info.bno}&page=${pagination.page}">
-                            ${board_info.title}
-                        </a>
-                    </td>
-                    <td>${board_info.writer}</td>
-                    <td>${board_info.view_cnt}</td>
-                    <td>${board_info.reg_date}</td>
-                </tr>
-            </c:forEach>
+			<c:choose>
+			    <c:when test="${empty boardList}">
+			        <tr class="empty-message">
+			            <td colspan="5">조회된 목록이 없습니다.</td>
+			        </tr>
+			    </c:when>
+			    <c:otherwise>
+			        <c:forEach var="board_info" items="${boardList}">
+			            <tr>
+			                <td>${board_info.bno}</td>
+			                <td>
+			                    <a href="/board/board/read?IDX=${board_info.bno}&page=${pagination.page}">
+			                        ${board_info.title}
+			                    </a>
+			                </td>
+			                <td>${board_info.writer}</td>
+			                <td>${board_info.view_cnt}</td>
+			                <td>${board_info.reg_date}</td>
+			            </tr>
+			        </c:forEach>
+			    </c:otherwise>
+			</c:choose>
         </tbody>
     </table>
 
