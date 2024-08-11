@@ -44,10 +44,10 @@
             transition: background-color .3s;
             border: 1px solid #ddd;
         }
-        .pagination li a.active {
-            background-color: #4CAF50;
+        .pagination li.active a{
+            background-color: #4caf505e;
             color: white;
-            border: 1px solid #4CAF50;
+            border: 1px solid #4caf505e;
         }
         .pagination li a:hover:not(.active) {
             background-color: #ddd;
@@ -86,6 +86,7 @@
                 var url = "${pageContext.request.contextPath}/board/list?page=" + nextPage + "&range=" + nextRange;
                 location.href = url;
             }
+
         }
         
         function fn_btnSearch(e){
@@ -169,7 +170,7 @@
 
             <c:if test="${pagination.next}">
                 <li class="page-item">
-                    <a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Next</a>
+                    <a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.pageCnt}')">Next</a>
                 </li>
             </c:if>
         </ul>
