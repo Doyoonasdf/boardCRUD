@@ -12,6 +12,7 @@ public class Pagination {
 	private int endPage; //각 페이지 범위 끝 번호 
 	private boolean prev; //이전 페이지 여부
 	private boolean next; //다음 페이지 여부
+	
 	public int getListSize() {
 		return listSize;
 	}
@@ -72,7 +73,12 @@ public class Pagination {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
-	
+	public int getPageCnt() {
+		return pageCnt;
+	}
+	public void setPageCnt(int pageCnt) {
+		this.pageCnt = pageCnt;
+	}
 	public void pageInfo(int page, int range, int listCnt) { //현재 페이지/ 현재페이지범위/ 게시물총개수
 		this.page =page;
 		this.range=range;
@@ -97,34 +103,29 @@ public class Pagination {
 		this.startList = (page - 1) * listSize;
 		
 		//이전 버튼 상태 : 첫번째 페이지 범위에서는 이전버튼 필요없어서 FALSE
-		//this.prev = range == 1 ? false : true;
-		 this.prev = range > 1;
+		this.prev = range == 1 ? false : true;
+
 		 
 		 
 		//다음 버튼 상태 : 현재 페이지의 마지막 번호가 전체 페이지 개수보다 크면 다음버튼 활성화
 		//endPage 현재 범위의 마지막 페이지 번호 30
 		// pageCnt 총 페이지 수 25
-		this.next = this.endPage < this.pageCnt ? false : true;
+		this.next = this.endPage > this.pageCnt ? false : true;
 		
 		if(this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;
-			this.next =false;
+			this.next =true;
 		}
 		
 	    // Logging for debugging
-	    System.out.println("Page: " + page + ", Range: " + range + ", List Count: " + listCnt);
-	    System.out.println("Start Page: " + startPage + ", End Page: " + endPage);
+	    System.out.println("====Page: " + page + ", Range: " + range + ", List Count: " + listCnt);
+	    System.out.println("pagination===Start Page: " + startPage + ", End Page: " + endPage);
 	    System.out.println("Total Pages (pageCnt): " + pageCnt);
 	    System.out.println("Prev: " + prev + ", Next: " + next);
-		
-	
+	    System.out.println("rangeSize: " + rangeSize );
+	    
 				
 	}
-	public int getPageCnt() {
-		return pageCnt;
-	}
-	public void setPageCnt(int pageCnt) {
-		this.pageCnt = pageCnt;
-	}
+
 	
 }

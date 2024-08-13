@@ -47,11 +47,14 @@ public class BoardController {
 	        int page = pageInfo.get("page") != null ? Integer.parseInt((String) pageInfo.get("page")) : 1;
 	        int range = pageInfo.get("range") != null ? Integer.parseInt((String) pageInfo.get("range")) : 1;
 
+
 	        int listCnt = boardService.getBoardListCnt(searchType, keyword);
 			//Pagination 객체생성 및 페이징 정보 셋팅
 			Pagination pagination = new Pagination();
 			pagination.pageInfo(page,range,listCnt);
-			
+	        System.out.println("★★★★★Page Info: " + pageInfo);
+	        System.out.println("컨트롤러Start Page: " + pagination.getStartPage());
+	        System.out.println("컨트롤러End Page: " + pagination.getEndPage());
 			// 게시판 목록 가져오기
 	        List<boardDTO> boardList = boardService.getList(pagination, searchType, keyword);
 

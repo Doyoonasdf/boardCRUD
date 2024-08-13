@@ -61,9 +61,10 @@
     <script>
     
 	    function fn_prev(page, range, rangeSize) {
-	        var prevPage = page - 1; // 이전 페이지는 현재 페이지 - 1
-	        var prevRange = range;
-	        if (prevPage <= (range - 1) * rangeSize) {
+	        //var prevPage = page - 1; // 이전 페이지는 현재 페이지 - 1
+	        var prevPage = parseInt(page) -  parseInt(rangeSize);
+	        var prevRange = parseInt(range) -1; 
+	        if (prevPage < (range - 1) * rangeSize) {
 	            prevRange -= 1; // 페이지 범위를 감소시킴
 	        }
 	        
@@ -80,8 +81,11 @@
         }
 
         function fn_next(page, range, rangeSize, pageCnt) {
-            var nextPage = page + 1; // 다음 페이지는 현재 페이지 + 1
-            var nextRange = range;
+
+            //var nextPage = parseInt(page) + 10; // 다음 페이지는 현재 페이지 + 1
+            var nextPage = parseInt(page) + parseInt(rangeSize); // next 클릭시 11,21,31
+            var nextRange = parseInt(range);
+            
             if (nextPage > range * rangeSize) {
                 nextRange += 1; // 페이지 범위를 증가시킴
             }
@@ -188,6 +192,9 @@
                 </li>
             </c:if>
         </ul>
+			  <input class="startPage" type="hidden" value="${pagination.startPage }" >
+			  <input class="endPage" type="hidden" value="${pagination.endPage }" >
+			  <input class="page" type="hidden" value="${pagination.page }" >
 
     </div>
 </body>
