@@ -63,8 +63,8 @@
 	    function fn_prev(page, range, rangeSize) {
 	        //var prevPage = page - 1; // 이전 페이지는 현재 페이지 - 1
 	        var prevPage = parseInt(page) -  parseInt(rangeSize);
-	        var prevRange = parseInt(range) -1; 
-	        if (prevPage < (range - 1) * rangeSize) {
+	        var prevRange = parseInt(range); 
+	        if (prevPage < (range - 1) * rangeSize + 1) {
 	            prevRange -= 1; // 페이지 범위를 감소시킴
 	        }
 	        
