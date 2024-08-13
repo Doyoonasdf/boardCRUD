@@ -110,12 +110,14 @@ public class Pagination {
 		//다음 버튼 상태 : 현재 페이지의 마지막 번호가 전체 페이지 개수보다 크면 다음버튼 활성화
 		//endPage 현재 범위의 마지막 페이지 번호 30
 		// pageCnt 총 페이지 수 25
-		this.next = this.endPage > this.pageCnt ? false : true;
+		//this.next = this.endPage > this.pageCnt ? false : true;
+
 		
 		if(this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;
-			this.next =true;
+			//this.next =true;
 		}
+		this.next = this.pageCnt > 0 && this.endPage < this.pageCnt;
 		
 	    // Logging for debugging
 	    System.out.println("====Page: " + page + ", Range: " + range + ", List Count: " + listCnt);
