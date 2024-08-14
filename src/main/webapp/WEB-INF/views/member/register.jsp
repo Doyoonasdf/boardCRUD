@@ -75,7 +75,7 @@
 <body>
     <div class="register-container">
         <h2>Register</h2>
-        <form action="${pageContext.request.contextPath}/register" method="post">
+        <form action="${pageContext.request.contextPath}/member/SaveRegister" method="post">
             <div class="form-group">
                 <label for="id">아이디:</label>
                 <input type="text" id="id" name="id" required>

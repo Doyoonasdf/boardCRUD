@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.board.common.Pagination;
+import com.spring.board.domain.MemberDTO;
 import com.spring.board.domain.boardDTO;
 import com.spring.board.service.BoardService;
+import com.spring.board.service.MemberService;
 
 
 @Controller
@@ -31,8 +33,29 @@ public class MemberController {
 		return "member/register";
 	}
 	
+	//회원가입 등록 처리
+	@PostMapping("/member/SaveRegister")
+	public String SaveRegister(@RequestParam Map<String, Object> memberInfo,
+			Model model)throws Exception {
+		try {
+			String id = (String) memberInfo.get("id");
+			String pwd = (String)memberInfo.get("pwd");
+			String name = (String) memberInfo.get("name");
+			
+			MemberDTO mem = new MemberDTO();
+			mem.setId(id);
+			mem.setPwd(pwd);
+			mem.setName(name);
+			
+			MemberService.insertService(mem);
+			
+		}catch(Exception e ) {
+			
+		}
+		return "redirect:/board/list";
+	}
 	
-	
+	//로그인 폼 이동
 	@GetMapping("/member/login")
 	public String getLogin() {
 		return "member/login";

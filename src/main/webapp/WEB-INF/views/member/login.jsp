@@ -75,7 +75,7 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="${pageContext.request.contextPath}/login" method="post">
+        <form action="${pageContext.request.contextPath}/member/login" method="post">
             <div class="form-group">
                 <label for="id">User ID:</label>
                 <input type="text" id="id" name="id" required>
