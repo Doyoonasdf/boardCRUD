@@ -26,7 +26,10 @@ import com.spring.board.service.MemberService;
 
 @Controller
 public class MemberController {
-	
+	 @Autowired
+	    private MemberService memberService;
+	 
+	 
 	//회원가입 폼 이동
 	@GetMapping("/member/register")
 	public String getRegister() {
@@ -47,7 +50,7 @@ public class MemberController {
 			mem.setPwd(pwd);
 			mem.setName(name);
 			
-			MemberService.insertService(mem);
+			memberService.insertService(mem);
 			
 		}catch(Exception e ) {
 			
