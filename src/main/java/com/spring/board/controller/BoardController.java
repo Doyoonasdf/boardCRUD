@@ -67,14 +67,14 @@ public class BoardController {
 			e.printStackTrace();
 			model.addAttribute("message","Error occurred while retrieving board list.");
 		}
-		return "boardList";
+		return "board/boardList";
 	}
 	
 
 	// 글등록 폼 이동
 	@GetMapping("/board/write")
 	public String getBoardWrite() {
-		return "boardWrite";
+		return "board/boardWrite";
 	}
 	
 //	글등록 처리 
@@ -108,7 +108,7 @@ public class BoardController {
 		}catch(Exception e ) {
 			e.printStackTrace();
 		}
-		return "boardRead";
+		return "board/boardRead";
 	}
 	
 	@RequestMapping(value="/board/updateForm", method= RequestMethod.GET)
@@ -119,7 +119,7 @@ public class BoardController {
 		}catch(Exception e ) {
 			e.printStackTrace();
 		}
-		return "boardUpdate";
+		return "board/boardUpdate";
 	}
 
 	@RequestMapping(value="/board/update", method= RequestMethod.POST)
