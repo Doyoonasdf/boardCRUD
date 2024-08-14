@@ -110,8 +110,8 @@
     </script>
 </head>
 <body>
+<jsp:include page="../common/header.jsp"/>
     <h1>게시판 목록</h1>
-    
     <form action="/board/board/list" class="search-form" method="get" id="searchFoam" name="search-form">
     	<select class="type-box" name="searchType" id="searchType"  >
        		 <option value="title" ${searchType == 'title' ? 'selected' : ''}>제목만</option>
