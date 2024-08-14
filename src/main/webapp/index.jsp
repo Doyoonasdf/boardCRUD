@@ -6,17 +6,10 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
-<style>
-   .container {
-       padding: 20px;
-   }
-</style>
+<title></title>
 </head>
 <body>
-<jsp:include page="WEB-INF/views/common/header.jsp"/>
-    <div class="container">
-        <h1>Welcome to the Main Page</h1>
-    </div>
+
+<jsp:forward page="WEB-INF/views/member/login.jsp"/>
 </body>
 </html>
