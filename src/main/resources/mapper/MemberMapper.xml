@@ -4,6 +4,12 @@
         
 <mapper namespace="com.spring.board.dao.MemberDAO">
 
+	<select id="getMember" parameterType="String" resultType="com.spring.board.domain.MemberDTO">
+		SELECT id,pwd,name
+		FROM member_info
+		WHERE id=#{id}
+	</select>
+	
     <insert id="insert" parameterType="com.spring.board.domain.MemberDTO">
     	INSERT into member_info 
     	(id,pwd,name)

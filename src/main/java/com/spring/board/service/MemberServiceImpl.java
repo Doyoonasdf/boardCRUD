@@ -14,6 +14,10 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDAO memberDao;
 	
+	public MemberDTO getMember(String id) throws Exception{
+		return memberDao.getMember(id);
+	}
+	
 	public int insertService(MemberDTO mem) throws Exception{
 		return memberDao.insert(mem);
 	}

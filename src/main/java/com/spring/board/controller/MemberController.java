@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,4 +64,38 @@ public class MemberController {
 	public String getLogin() {
 		return "member/login";
 	}
+	
+	@PostMapping("/member/login")
+	public String PostLogin(
+			@RequestParam Map<String, Object> memberInfo, 
+			HttpSession session) throws Exception {
+	    try {
+	        String id = (String) memberInfo.get("id");
+	        String pwd = (String) memberInfo.get("pwd");
+	        
+	        MemberDTO member = memberService.getMember(id);
+	        if (member == null) {
+	            return "redirect:/member/login";
+	        } else { // id는 맞음 
+	            if (!member.getPwd().equals(pwd)) { // 비밀번호는 틀림
+	                return "redirect:/member/login";
+	            } else { // 비밀번호도 맞음 
+	                session.setAttribute("MEMBER", member);
+	                return "redirect:/board/list";
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	        //        return "error/500";
+	    }
+	    return "redirect:/member/login";
+
+	}
+	
+	@PostMapping("/member/logout")
+	public String logout(HttpSession session) {
+		   session.invalidate();
+	        return "redirect:/member/login";
+	}
+	
 }

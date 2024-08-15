@@ -17,6 +17,10 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	private static String namespace = "com.spring.board.dao.MemberDAO.";
 	
+	public MemberDTO getMember(String id) throws Exception{
+		return session.selectOne(namespace+"getMember",id);
+	}
+	
 	public int insert(MemberDTO mem) throws Exception{
 		return session.insert(namespace+"insert",mem);
 	}
