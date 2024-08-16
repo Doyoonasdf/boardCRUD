@@ -80,7 +80,7 @@ public class MemberController {
 	            if (!member.getPwd().equals(pwd)) { // 비밀번호는 틀림
 	                return "redirect:/member/login";
 	            } else { // 비밀번호도 맞음 
-	                session.setAttribute("MEMBER", member);
+	                session.setAttribute("MEMBER_session", member);
 	                return "redirect:/board/list";
 	            }
 	        }
@@ -92,7 +92,7 @@ public class MemberController {
 
 	}
 	
-	@PostMapping("/member/logout")
+	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		   session.invalidate();
 	        return "redirect:/member/login";
