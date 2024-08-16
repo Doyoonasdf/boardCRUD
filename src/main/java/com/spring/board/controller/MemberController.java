@@ -75,12 +75,16 @@ public class MemberController {
 	        
 	        MemberDTO member = memberService.getMember(id);
 	        if (member == null) {
+	        	System.out.println("User not found");
 	            return "redirect:/member/login";
 	        } else { // id는 맞음 
+	        	
 	            if (!member.getPwd().equals(pwd)) { // 비밀번호는 틀림
-	                return "redirect:/member/login";
+	            	 System.out.println("Password does not match");
+	            	return "redirect:/member/login";
 	            } else { // 비밀번호도 맞음 
 	                session.setAttribute("MEMBER_session", member);
+	                System.out.println("User logged in and session created: " + session.getAttribute("MEMBER_session"));
 	                return "redirect:/board/list";
 	            }
 	        }
@@ -95,6 +99,15 @@ public class MemberController {
 	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		   session.invalidate();
+		   
+		    // 세션 무효화 후 세션 확인
+		    try {
+		        System.out.println("Session after invalidate: " + session.getAttribute("MEMBER_session")); // 무효화된 세션에서 정보를 가져오려 시도
+		    } catch (IllegalStateException e) {
+		        System.out.println("Session is already invalidated."); // 세션이 이미 무효화된 경우
+		    }
+		    
+		    
 	        return "redirect:/member/login";
 	}
 	
