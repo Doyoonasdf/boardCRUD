@@ -24,6 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	public boardDTO detailView (int bno) throws Exception {
+		boardDao.updateViewCnt(bno);
 		return boardDao.detailView(bno);
 	}
 	

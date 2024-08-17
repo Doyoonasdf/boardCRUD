@@ -16,4 +16,5 @@ public interface boardDAO {
 	
 	public int getBoardListCnt(String searchType, String keyword) throws Exception;     //총 게시글개수 확인
 	
+	int updateViewCnt(int bno) throws Exception;
 }

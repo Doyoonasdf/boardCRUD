@@ -52,6 +52,10 @@ public class boardDAOImpl implements boardDAO {
 		params.put("keyword", keyword);
 		return session.selectOne(namespace+"getBoardListCnt",params);
 	}
+	
+	public int updateViewCnt(int bno) throws Exception{
+		return session.update(namespace+"updateViewCnt", bno);
+	};
     
     
 }

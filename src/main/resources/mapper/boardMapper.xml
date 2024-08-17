@@ -48,4 +48,10 @@
     	FROM board_info
     	WHERE  bno=#{bno} and writer=#{writer};
     </delete>
+    
+    <update id="updateViewCnt" parameterType="int">
+    	UPDATE board_info
+    	SET view_cnt = view_cnt +1
+    	WHERE bno = #{bno}
+    </update>
 </mapper>
