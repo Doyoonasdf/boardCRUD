@@ -10,7 +10,9 @@
 	        <if test="searchType != null and keyword != null">
 	            and ${searchType} LIKE CONCAT('%', #{keyword}, '%')
 	        </if>
+	    ORDER BY reg_date DESC
 	    LIMIT #{startList}, #{listSize}
+	    
 	</select>
     
     <select id="getBoardListCnt" resultType="int">

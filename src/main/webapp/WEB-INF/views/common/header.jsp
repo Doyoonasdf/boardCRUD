@@ -37,10 +37,10 @@
 <body>
     <nav>
         <ul>
-            <li><a href="${pageContext.request.contextPath }">Home</a></li>
             <li><a href="${pageContext.request.contextPath}/board/list">Board</a></li>
             <li><a href="${pageContext.request.contextPath}/member/logout">Logout</a></li>
-            <li><a href="#">Sign In</a></li>
+            <li><a href="${pageContext.request.contextPath}/member/register">Register</a></li>
+            
             
         </ul>
     </nav>
