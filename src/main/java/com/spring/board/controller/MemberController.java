@@ -1,7 +1,7 @@
 package com.spring.board.controller;
 
-import java.util.List;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -42,18 +42,56 @@ public class MemberController {
 	public String SaveRegister(@RequestParam Map<String, Object> memberInfo,
 			Model model)throws Exception {
 		try {
-			String id = (String) memberInfo.get("id");
-			String pwd = (String)memberInfo.get("pwd");
-			String name = (String) memberInfo.get("name");
+			//Map<String, Object>에서 get 메서드는 항상 Object를 반환하므로 String타입으로 형변환 필요
+	        String id = (String) memberInfo.get("id");
+	        String pwd = (String) memberInfo.get("pwd");
+            String pwdConfirm = (String) memberInfo.get("pwdConfirm");
+	        String name = (String) memberInfo.get("name");
+	        String phoneNumber = (String) memberInfo.get("phoneNumber");
+	        String email = (String) memberInfo.get("email");
+	        String birthDateStr = (String) memberInfo.get("birthDate");
 			
-			MemberDTO mem = new MemberDTO();
-			mem.setId(id);
-			mem.setPwd(pwd);
-			mem.setName(name);
+	        Map<String, String> errorMessages = new HashMap<>();
+	        Date birthDate = null; // birthDate를 null로 초기화
+
+	        // 비밀번호 확인
+	        if (!pwd.equals(pwdConfirm)) {
+	            errorMessages.put("pwdConfirm", "비밀번호가 일치하지 않습니다.");
+	        }
+
+	        
+	        // 생년월일 변환
+	        try {
+	            birthDate = Date.valueOf(birthDateStr);
+	        } catch (IllegalArgumentException e) {
+	            errorMessages.put("birthDate", "생년월일 형식이 올바르지 않습니다.");
+	        }
+	        
+	        
+	        if (!errorMessages.isEmpty()) {
+	            model.addAttribute("errorMessages", errorMessages);
+	            model.addAttribute("id", id);
+	            model.addAttribute("pwd", pwd);
+	            model.addAttribute("name", name);
+	            model.addAttribute("phoneNumber", phoneNumber);
+	            model.addAttribute("email", email);
+	            model.addAttribute("birthDate", birthDateStr);
+	            return "member/register";
+	        }
+            
+            MemberDTO mem = new MemberDTO();
+            mem.setId(id);
+            mem.setPwd(pwd);
+            mem.setName(name);
+            mem.setPhoneNumber(phoneNumber);
+            mem.setEmail(email);
+            mem.setBirthDate(birthDate);
 			
 			memberService.insertService(mem);
 			
 		}catch(Exception e ) {
+            model.addAttribute("errorMessage", "회원 가입 중 오류가 발생했습니다.");
+            return "member/register";
 			
 		}
 		return "redirect:/board/list";

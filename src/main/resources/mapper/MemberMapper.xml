@@ -12,9 +12,16 @@
 	
     <insert id="insert" parameterType="com.spring.board.domain.MemberDTO">
     	INSERT into member_info 
-    	(id,pwd,name)
+    	(id,pwd,name,phone_number,email,birth_date,created_at,updated_at)
     	values
-    	(#{id},#{pwd},#{name})
+    	(#{id},
+    	#{pwd},
+    	#{name},
+    	#{phone_number},
+    	#{email},
+    	#{birth_date},
+    	CURRENT_DATE,
+    	CURRENT_DATE)
     </insert>
 
 </mapper>
