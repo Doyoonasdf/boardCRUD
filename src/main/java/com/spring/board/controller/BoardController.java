@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.board.common.Pagination;
+import com.spring.board.domain.MemberDTO;
 import com.spring.board.domain.boardDTO;
 import com.spring.board.service.BoardService;
+import com.spring.board.service.MemberService;
 
 
 @Controller
@@ -32,6 +35,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
 	
 //	게시판 목록
 	@GetMapping("/board/list")
@@ -79,12 +84,18 @@ public class BoardController {
 	
 //	글등록 처리 
 	@PostMapping("/board/insert")
-	public String Boardwrite(HttpServletRequest request, Model model) {
+	public String Boardwrite(HttpServletRequest request, Model model,HttpSession session) {
 		try {
+			
+			 MemberDTO memberDTO = (MemberDTO)session.getAttribute("MEMBER_session");
+			if(memberDTO == null) {
+				return "redirect:/member/login";
+			}
+			
 			boardDTO dto = new boardDTO();
 			
 			dto.setContent(request.getParameter("content"));
-			dto.setWriter(request.getParameter("writer"));
+			dto.setWriter(memberDTO.getName());
 			dto.setTitle(request.getParameter("title"));
 			
 			boardService.insertService(dto);

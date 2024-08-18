@@ -13,12 +13,7 @@
 		<div>
 			<form action="/board/board/insert" method="post" >
 				<table class="tableWrite">
-					<tr>
-						<td>작성자</td>
-						<td>
-						<input type="text" name="writer">
-						</td>
-					</tr>
+
 					
 					<tr>
 						<td>제목</td>
