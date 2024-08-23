@@ -81,21 +81,27 @@
         }
 
         function fn_next(page, range, rangeSize, pageCnt) {
-
+        	debugger;
+        	var currentPage = parseInt(page);
             //var nextPage = parseInt(page) + 10; // 다음 페이지는 현재 페이지 + 1
             var nextPage = parseInt(page) + parseInt(rangeSize); // next 클릭시 11,21,31
             var nextRange = parseInt(range);
-            
+                        
             if (nextPage > range * rangeSize) {
-                nextRange += 1; // 페이지 범위를 증가시킴
+               nextRange += 1; // 페이지 범위를 증가시킴
             }
-            
+           
+           // 다음 페이지가 전체 페이지 수를 초과하는 경우
+               if (nextPage > pageCnt) {
+			     nextPage = pageCnt; // 다음 페이지를 전체 페이지 수로 조정
+			 }
+           
             // 다음 페이지가 전체 페이지 수를 초과하지 않도록 함
             if (nextPage <= pageCnt) {
                 var url = "${pageContext.request.contextPath}/board/list?page=" + nextPage + "&range=" + nextRange;
                 location.href = url;
             }
-
+			debugger;
         }
         
         function fn_btnSearch(e){
@@ -195,6 +201,8 @@
 			  <input class="startPage" type="hidden" value="${pagination.startPage }" >
 			  <input class="endPage" type="hidden" value="${pagination.endPage }" >
 			  <input class="page" type="hidden" value="${pagination.page }" >
+			  <input class="next" type="hidden" value="${pagination.next}" >
+
 
     </div>
 </body>

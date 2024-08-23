@@ -94,11 +94,7 @@ public class Pagination {
 		//끝 페이지 : 다음에 나올 다음버튼 활성화 여부 판단위해
 		this.endPage = range * rangeSize;
 		
-	    // 페이지가 총 페이지 수를 넘지 않도록 조정
-	    if (this.endPage > this.pageCnt) {
-	        this.endPage = this.pageCnt;
-	    }
-//		
+
 		//게시판 시작번호 : MYSQL을 이용해 원하는 목록을 가져오기위해서 0,10,20
 		this.startList = (page - 1) * listSize;
 		
@@ -113,12 +109,14 @@ public class Pagination {
 		//this.next = this.endPage > this.pageCnt ? false : true;
 
 		
-		if(this.endPage > this.pageCnt) {
-			this.endPage = this.pageCnt;
-			//this.next =true;
-		}
-		this.next = this.pageCnt > 0 && this.endPage < this.pageCnt;
+		//this.next = this.pageCnt > 0 && this.endPage < this.pageCnt;
+		this.next = this.endPage < this.pageCnt;
 		
+	    // 페이지가 총 페이지 수를 넘지 않도록 조정
+	    if (this.endPage > this.pageCnt) {
+	        this.endPage = this.pageCnt;
+	    }
+//		
 	    // Logging for debugging
 	    System.out.println("====Page: " + page + ", Range: " + range + ", List Count: " + listCnt);
 	    System.out.println("pagination===Start Page: " + startPage + ", End Page: " + endPage);

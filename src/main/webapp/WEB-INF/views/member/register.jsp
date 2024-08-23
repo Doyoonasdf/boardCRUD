@@ -80,14 +80,14 @@
         <form action="${pageContext.request.contextPath}/member/SaveRegister" method="post">
             <div class="form-group">
                 <label for="id">아이디:</label>
-                <input type="text" id="id" name="id" required>
+                <input type="text" id="id" name="id" required placeholder="※8-16자 소문자+숫자">
                 <c:if test="${not empty errorMessages.id}">
                   <div class="error-message" style="color: red;">${errorMessages.id}</div>
                 </c:if>
             </div>
             <div class="form-group">
                 <label for="pwd">비밀번호:</label>
-                <input type="password" id="pwd" name="pwd" required>
+                <input type="password" id="pwd" name="pwd" placeholder="※8-16자 대문자+소문자+숫자" required >
                 <c:if test="${not empty errorMessages.pwd}">
                     <div class="error-message" style="color: red;">${errorMessages.pwd}</div>
                 </c:if>
@@ -108,7 +108,7 @@
             </div>
             <div class="form-group">
                 <label for="phoneNumber">전화번호:</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="※010-0000-0000">
                 <c:if test="${not empty errorMessages.phoneNumber}">
                      <div class="error-message" style="color: red;">${errorMessages.phoneNumber}</div>
                 </c:if>
